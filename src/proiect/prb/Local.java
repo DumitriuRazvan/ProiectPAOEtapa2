@@ -20,6 +20,8 @@ abstract public class Local {
 
 
 
+
+
     public void adaugaComanda( Comanda comanda) {
         listaComenzi.add(comanda);
     }

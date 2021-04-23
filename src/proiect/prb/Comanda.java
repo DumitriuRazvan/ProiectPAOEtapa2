@@ -67,6 +67,8 @@ public class Comanda {
         return destinatar;
     }
 
+
+
     public void setDestinatar(User destinatar) {
         this.destinatar = destinatar;
     }

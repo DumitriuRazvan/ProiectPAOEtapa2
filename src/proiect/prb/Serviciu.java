@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Serviciu {
 
-    Restaurant CreateRestaurant()
+    Restaurant CreateRestaurant(String PATH)
     {
         System.out.println("Se citesc pentru restaurant parametrii lui\n---------------------\n");
         Scanner scanner = new Scanner(System.in);
@@ -27,9 +27,14 @@ public class Serviciu {
         System.out.println("Pret desert: ");
         var pretDesert = scanner.nextInt();
         Restaurant restaurant = new Restaurant(numeLocal,stocMancare, stocBautura, stocDesert, pretMancare, pretDesert, pretBautura);
+
+        // write to CSV file
+        var file = WriteToFileService.getFile();
+        file.writeToFileLocal(PATH, restaurant);
+
         return restaurant;
     }
-    Bar CreateBar()
+    Bar CreateBar(String PATH)
     {
         System.out.println("Se citesc pentru bar parametrii lui\n---------------------");
         Scanner scanner = new Scanner(System.in);
@@ -44,10 +49,15 @@ public class Serviciu {
         System.out.println("Pret desert: ");
         var pretDesert = scanner.nextInt();
         Bar bar = new Bar(numeLocal,stocBautura, stocDesert,  pretDesert, pretBautura);
+
+        // write to CSV file
+        var file = WriteToFileService.getFile();
+        file.writeToFileLocal(PATH, bar);
+
         return bar;
     }
 
-    Sofer CreateSofer()
+    Sofer CreateSofer(String PATH)
     {
         Scanner scanner = new Scanner(System.in);
 
@@ -59,11 +69,16 @@ public class Serviciu {
         System.out.println("Cat consuma?");
         Integer consum = scanner.nextInt();
         Sofer sofer = new Sofer(numeMasina,numeCurier,consum);
+
+        // write to CSV file
+        var file = WriteToFileService.getFile();
+        file.writeToFileCurieri(PATH, sofer);
+
         return sofer;
     }
 
 
-    Biciclist CreateBiciclist()
+    Biciclist CreateBiciclist(String PATH)
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Se citeste parametri biciclistului");
@@ -72,10 +87,15 @@ public class Serviciu {
         System.out.println("Ce bicicleta ai?");
         String modelBicicleta = scanner.nextLine();
         Biciclist biciclist = new Biciclist(numeCurier,modelBicicleta);
+
+        // write to CSV file
+        var file = WriteToFileService.getFile();
+        file.writeToFileCurieri(PATH, biciclist);
+
         return biciclist;
     }
 
-    User CreateDestinatar()
+    User CreateDestinatar(String PATH)
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Se citesc parametrii destinatarului");
@@ -90,12 +110,17 @@ public class Serviciu {
         var varsta = scanner.nextInt();
 
         User destinatar = new User(adresa,nume, varsta);
+
+        // write to CSV file
+        var file = WriteToFileService.getFile();
+        file.writeToFileDestinatar(PATH, destinatar);
+
         return destinatar;
     }
 
 
 
-    Comanda CreateComanda(Local localAles, Curier curierAles, User destinatar)
+    Comanda CreateComanda(Local localAles, Curier curierAles, User destinatar, String PATH)
     {
         Comanda comanda = null;
         Scanner scanner = new Scanner(System.in);
@@ -131,6 +156,11 @@ public class Serviciu {
         localAles.adaugaComanda(comanda);
         localAles.addToCurieriAutorizati(curierAles);
         comanda.setLocal(localAles);
+
+        // write to CSV file
+        var file = WriteToFileService.getFile();
+        file.writeToFileComanda(PATH, comanda);
+
         return comanda;
     }
 
@@ -153,6 +183,9 @@ public class Serviciu {
                 }
             }
 
+            // write to CSV file
+            var file = WriteToFileService.getFile();
+            file.writeToFileAudit("afisareComenziFacuteLaLocal");
     }
 
     Integer calculeazaImpozitAfacere(Local local, Integer cotaImpozit)
@@ -160,6 +193,12 @@ public class Serviciu {
         var profit = 0;
         for(var comanda : local.getListaComenzi())
             profit += local.calculeazaProfit(comanda);
+
+
+        // write to CSV file
+        var file = WriteToFileService.getFile();
+        file.writeToFileAudit("calculareImpozitAfacere" + cotaImpozit.toString() + "%");
+
         return profit * cotaImpozit;
     }
 
@@ -182,6 +221,9 @@ public class Serviciu {
             }
             count ++;
         }
+        // write to CSV file
+        var file = WriteToFileService.getFile();
+        file.writeToFileAudit("afisareCurieriAutorizati");
 
     }
 }
