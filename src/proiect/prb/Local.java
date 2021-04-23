@@ -6,15 +6,15 @@ import java.util.*;
 abstract public class Local {
     protected String numeLocal;
     protected ArrayList<Comanda> listaComenzi = new ArrayList<Comanda>();
-    protected Set<Curier> curieriAutorizati = Collections.<Curier>emptySet();
+    protected Set<Curier> curieriAutorizati = new HashSet<>();
 
     Local()
     {
-        numeLocal = "none";
+        this.numeLocal = "none";
     }
     Local(String numeLocal)
     {
-        numeLocal = numeLocal;
+        this.numeLocal = numeLocal;
     }
 
 
@@ -50,7 +50,10 @@ abstract public class Local {
         return curieriAutorizati;
     }
 
-    public void setCurieriAutorizati(Set<Curier> curieriAutorizati) {
-        this.curieriAutorizati = curieriAutorizati;
+    public void addToCurieriAutorizati(Curier curier) {
+
+        this.curieriAutorizati.add(curier);
+
+
     }
 }

@@ -9,6 +9,7 @@ public class Comanda {
     private User destinatar;
     private Integer nrBucatiDesert;
     private Local local;
+    private  Integer curierMinuteDeplasare;
 
     public Comanda(Curier curier, Integer nrBucatiMancare, Integer nrBucatiBautura, User destinatar, Integer nrBucatiDesert, Local local) {
         this.curier = curier;
@@ -17,6 +18,14 @@ public class Comanda {
         this.destinatar = destinatar;
         this.nrBucatiDesert = nrBucatiDesert;
         this.local = local;
+    }
+
+    public Integer getCurierMinuteDeplasare() {
+        return curierMinuteDeplasare;
+    }
+
+    public void setCurierMinuteDeplasare(Integer curierMinuteDeplasare) {
+        this.curierMinuteDeplasare = curierMinuteDeplasare;
     }
 
     public Integer getNrBucatiMancare() {
@@ -46,7 +55,7 @@ public class Comanda {
 
     void setLocal(Local local)
     {
-        local = local;
+        this.local = local;
     }
     Local getLocal(){return local;}
 

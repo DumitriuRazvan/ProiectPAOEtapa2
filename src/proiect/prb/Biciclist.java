@@ -19,22 +19,22 @@ public class Biciclist extends Curier{
         {
             int nrBucatiTotal = c.getNrBucatiMancare()  + c.getNrBucatiDesert() + c.getNrBucatiBautura();
             if(nrBucatiTotal <= 10)
-                minuteDeplasare = 30;
+                c.setCurierMinuteDeplasare(30);
             else if(nrBucatiTotal <= 20)
-                minuteDeplasare = 40;
+                c.setCurierMinuteDeplasare(40);
             else if(nrBucatiTotal <= 30)
-                minuteDeplasare = 50;
+                c.setCurierMinuteDeplasare(50);
         }
         else if(c.getLocal() instanceof Bar) {
             int nrBucatiTotal = c.getNrBucatiDesert() + c.getNrBucatiBautura();
             if(nrBucatiTotal <= 10)
-                minuteDeplasare = 30;
+                c.setCurierMinuteDeplasare(30);
             else if(nrBucatiTotal <= 20)
-                minuteDeplasare = 40;
+                c.setCurierMinuteDeplasare(40);
             else if(nrBucatiTotal <= 30)
-                minuteDeplasare = 50;
+                c.setCurierMinuteDeplasare(50);
         }
-        return minuteDeplasare;
+        return c.getCurierMinuteDeplasare();
     }
 
     public String getModelBicicleta() {

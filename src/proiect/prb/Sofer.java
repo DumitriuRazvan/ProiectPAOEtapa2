@@ -22,22 +22,22 @@ public class Sofer extends Curier{
         {
             int nrBucatiTotal = c.getNrBucatiMancare()  + c.getNrBucatiDesert() + c.getNrBucatiBautura();
             if(nrBucatiTotal <= 10)
-                minuteDeplasare = 10;
+                c.setCurierMinuteDeplasare(10);
             else if(nrBucatiTotal <= 20)
-                minuteDeplasare = 20;
+                c.setCurierMinuteDeplasare(20);
             else if(nrBucatiTotal <= 30)
-                minuteDeplasare = 30;
+                c.setCurierMinuteDeplasare(30);
         }
         else if(c.getLocal() instanceof Bar) {
             int nrBucatiTotal = c.getNrBucatiDesert() + c.getNrBucatiBautura();
             if(nrBucatiTotal <= 10)
-                minuteDeplasare = 10;
+                c.setCurierMinuteDeplasare(10);
             else if(nrBucatiTotal <= 20)
-                minuteDeplasare = 20;
+                c.setCurierMinuteDeplasare(20);
             else if(nrBucatiTotal <= 30)
-                minuteDeplasare = 30;
+                c.setCurierMinuteDeplasare(30);
         }
-        return minuteDeplasare;
+        return c.getCurierMinuteDeplasare();
     }
 
 

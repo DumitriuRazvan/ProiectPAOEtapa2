@@ -7,13 +7,7 @@ import java.util.*;
 
 
 public class Serviciu {
-    Integer calculeazaImpozitAfacere(Local local, Integer cotaImpozit)
-    {
-        var profit = 0;
-        for(var comanda : local.getListaComenzi())
-            profit += local.calculeazaProfit(comanda);
-        return profit * cotaImpozit;
-    }
+
     Restaurant CreateRestaurant()
     {
         System.out.println("Se citesc pentru restaurant parametrii lui\n---------------------\n");
@@ -135,6 +129,8 @@ public class Serviciu {
             comanda = new Comanda(curierAles, 0, nrBautura, destinatar, nrDesert, localAles);
         }
         localAles.adaugaComanda(comanda);
+        localAles.addToCurieriAutorizati(curierAles);
+        comanda.setLocal(localAles);
         return comanda;
     }
 
@@ -156,6 +152,36 @@ public class Serviciu {
                     ) +" lei");
                 }
             }
+
+    }
+
+    Integer calculeazaImpozitAfacere(Local local, Integer cotaImpozit)
+    {
+        var profit = 0;
+        for(var comanda : local.getListaComenzi())
+            profit += local.calculeazaProfit(comanda);
+        return profit * cotaImpozit;
+    }
+
+    void afiseazaCurieriAutorizati(Local local)
+    {
+        var curieri = local.getCurieriAutorizati();
+        System.out.println("Localul " + local.getNumeLocal() + " are " + curieri.size() + " curieri autorizati. Acestia sunt: ");
+        int count = 1;
+        for (var curier : curieri)
+        {
+
+            System.out.println(count + " Curierul " + curier.getNumeCurier() + ' ' );
+            if (curier instanceof Biciclist)
+            {
+                System.out.println("cu model de bicicleta " + ((Biciclist) curier).getModelBicicleta());
+            }
+            else if (curier instanceof Sofer)
+            {
+                System.out.println("cu masina" + ((Sofer) curier).getNumeMasina() + " ce consuma" + ((Sofer) curier).getConsum());
+            }
+            count ++;
+        }
 
     }
 }
